@@ -1,0 +1,27 @@
+{
+  "name": "learn-webpack",
+  "version": "1.0.0",
+  "description": "学习webpack的基本功能",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wzb19960208/learn-webpack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wzb19960208/learn-webpack/issues"
+  },
+  "homepage": "https://github.com/wzb19960208/learn-webpack#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
+  }
+}
