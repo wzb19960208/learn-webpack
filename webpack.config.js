@@ -43,5 +43,12 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "app.bundle.css"
         })
-    ]
+    ],
+
+    devServer:{
+        contentBase:'./dist/',
+        inline:true,
+        port:'3000'
+    }
+
 }

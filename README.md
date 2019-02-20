@@ -187,3 +187,22 @@ root.appendChild(redBox);
 root.appendChild(greenBox);
 ```
 
+## 搭建本地服务器
+类似React脚手架那样，npm start 之后可以通过 http://localhost:3000/ 访问首页，
+其实就是在本地搭建了一个服务器，webpack提供了这个功能
+
+```js
+// 安装
+npm install --save-dev webpack-dev-server
+
+devServer:{
+        // 访问的路径
+        contentBase:'./dist/',
+        // 设置为true，当源文件改变时会自动刷新页面
+        inline:true,
+        port:'3000'
+    }
+
+// 通过webpack-dev-server命令才能跑起来
+"build": "webpack --mode production && webpack-dev-server"
+```
