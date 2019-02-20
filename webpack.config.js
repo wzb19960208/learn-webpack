@@ -1,5 +1,6 @@
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry:{
@@ -20,6 +21,15 @@ module.exports = {
                         presets:['@babel/preset-env']
                     }
                 }
+            },
+
+            {
+                test: /\.css$/,
+                use : [ 
+                    MiniCssExtractPlugin.loader,
+                    'css-loader'
+                ]
+            
             }
         ]
     },
@@ -28,6 +38,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename:'index.html',
             template:'./index.html'
+        }),
+
+        new MiniCssExtractPlugin({
+            filename: "app.bundle.css"
         })
     ]
 }
