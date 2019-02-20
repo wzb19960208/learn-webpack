@@ -94,3 +94,19 @@ plugins: [
     <p1>Hello World</p1>
 <script type="text/javascript" src="app.bundle.js"></script></body>
 ```
+
+## 生产和开发模式
+生产环境下会自动Tree-shaking以及启用uglifyjs对代码进行压缩，不需要自己再配置了
+
+```js
+"build": "webpack --mode production",
+"dev": "webpack --mode development"
+```
+
+```js
+// 生产环境
+app.bundle.js   1.04 KiB
+
+// 开发环境
+app.bundle.js   4.49 KiB
+```
