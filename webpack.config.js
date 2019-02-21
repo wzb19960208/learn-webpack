@@ -4,7 +4,7 @@ var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry:{
-        app:'./app.js'
+        app:'./index.js'
     },
     output:{
         path: path.resolve(__dirname,'dist'),
@@ -13,12 +13,12 @@ module.exports = {
     module:{
         rules:[
             {
-                test:'/\.js$/',
+                test:'/(\.js|\.jsx)$/',
                 exclude:'/node_modules/',
                 use:{
                     loader: 'babel-loader',
                     options:{
-                        presets:['@babel/preset-env']
+                        presets:['@babel/preset-react','@babel/preset-env']
                     }
                 }
             },
@@ -44,6 +44,15 @@ module.exports = {
             filename: "app.bundle.css"
         })
     ],
+
+    externals: {
+        "react": 'React',
+        'react-dom': 'ReactDOM'
+    },
+
+    resolve: {
+        extensions: ['.js', '.css']
+    },
 
     devServer:{
         contentBase:'./dist/',
