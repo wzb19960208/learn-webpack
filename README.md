@@ -206,3 +206,96 @@ devServer:{
 // 通过webpack-dev-server命令才能跑起来
 "build": "webpack --mode production && webpack-dev-server"
 ```
+## 集成React
+
+```json
+// 最终的package.json
+
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    // 打包，就是生产模式
+    "build": "webpack --mode production",
+    // 开发模式，使用webpack服务器打开页面，并自动打开浏览器
+    "start": "webpack-dev-server --mode development --open"
+  },
+
+"devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  }
+
+```
+
+
+```js
+// 最终的配置文件
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+    entry:{
+        app:'./index.js'
+    },
+    output:{
+        path: path.resolve(__dirname,'dist'),
+        filename: 'app.bundle.js'
+    },
+    module:{
+        rules:[
+            {
+                // 注意这里是正则表达式对象，不是字符串
+                test: /\.js$/ ,
+                exclude: /node_modules/,
+                use:{
+                    loader: 'babel-loader'
+                }
+            },
+
+            {
+                test: /\.css$/,
+                use : [ 
+                    MiniCssExtractPlugin.loader,
+                    'css-loader'
+                ]
+            
+            }
+        ]
+    },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename:'index.html',
+            template:'./index.html'
+        }),
+
+        new MiniCssExtractPlugin({
+            filename: "app.bundle.css"
+        })
+    ],
+
+    // 当import的文件没有后缀名的时候，会在这些后缀里面找
+    resolve: {
+        extensions: ['.js', '.jsx', '.css']
+    },
+
+    devServer:{
+        contentBase:'./dist/',
+        inline:true,
+        port:'3000'
+    }
+
+}
+```

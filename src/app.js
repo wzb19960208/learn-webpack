@@ -1,4 +1,5 @@
 import React , {Component} from 'react';
+import './asset/css/app.css'
 
 class TodoList extends Component{
 
@@ -9,11 +10,12 @@ class TodoList extends Component{
             array:[]
         }
         this.change = this.change.bind(this);
+        this.click = this.click.bind(this);
     }
 
-    change(data){
+    change(e){
         this.setState({
-            content:data
+            content:e.target.value
         })
     }
 
@@ -28,7 +30,7 @@ class TodoList extends Component{
     render(){
         return(
             <div>
-                <input value={this.state.content} onChange={this.change}/>
+                <input className='border' value={this.state.content} onChange={this.change}/>
                 <button onClick={this.click} >Click Me!</button>
                 <ul>
                     {this.state.array.map((item)=>{
